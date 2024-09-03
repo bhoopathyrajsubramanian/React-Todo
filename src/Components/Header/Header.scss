@@ -1,0 +1,118 @@
+/*main div */
+
+button {
+    border: none;
+    background: transparent;
+}
+
+.header {
+    height: 8%;
+    width: 100%;
+    background-color: #2564cf;
+    display: flex;
+}
+
+.button-header {
+    width: 40%;
+}
+
+.header-menu {
+    width: 6%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.button-header-others {
+    width: 14%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.header-search {
+    width: 64%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-others {
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.header-user {
+    width: 14%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-field {
+    height: 70%;
+    width: 50%;
+    border-radius: 0.4rem;
+    background-color: #fefefe;
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+
+    .search-icon {
+        height: 45%;
+        width: 10%;
+        transform: scaleX(-1);
+    }
+
+    .header-input {
+        width: 90%;
+        height: 80%;
+        border: none;
+
+        input:focus {
+            outline: none
+        }
+
+    }
+}
+
+.header-icon {
+    height: 2rem;
+    width: 2rem;
+
+}
+
+.settings {
+    height: 2rem;
+    width: 2rem;
+    transform: scaleX(-1);
+}
+
+.button-header-user {
+    height: 3rem;
+    width: 3rem;
+    background-color: transparent;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fefefe;
+    border: 0.1rem solid #fefefe;
+}
+
+.header-todo-link {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fefefe;
+    padding: 0;
+}
+
+.header-input {
+    font-size: 1.25rem;
+}

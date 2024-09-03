@@ -1,0 +1,217 @@
+$hundred : 100%;
+
+.todo-body {
+    // width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.content{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-body-header {
+    width: 100%;
+    height: 14%;
+    display: flex;
+}
+
+.todo-display-content {
+    height: 80%;
+    width: 70%;
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+}
+.todo-display-content-others{
+    height: 80%;
+    width: 70%;
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+
+.button-menu {
+    display: flex;
+    height: 90%;
+    width: 5%;
+    align-items: center;
+
+    .menu-icon {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+}
+
+.button-menu-order {
+    @extend .button-menu;
+    width: 10%;
+    display: flex;
+    gap: 0.5rem;
+
+    .todo-display-text {
+        font-size: 1.5rem;
+
+    }
+
+}
+
+.todo-display-others{
+    display: flex;
+    height: 80%;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    
+    .button-menu-options {
+        width: 28%;
+        display: flex;
+        height: 60%;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+
+        .menu-icon {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+       
+    }
+
+    .options-name{
+        font-size: 1.25rem;
+        padding-left: 0.25rem;
+
+    }
+
+}
+.todo-display-options {
+    display: flex;
+    height: 80%;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    
+    .button-menu-options {
+        width: 28%;
+        display: flex;
+        height: 60%;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+
+        .menu-icon {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+       
+    }
+
+    .options-name{
+        font-size: 1.25rem;
+        padding-left: 0.2rem;
+
+    }
+}
+
+.add-icon{
+    height: 1.75rem;
+    width: 1.75rem;
+}
+
+.add-todo-container{
+    background-color: #ffffff;
+    height: 4rem;
+    width: 95%;
+    display: flex;
+    margin : 0 1.1rem;  
+    justify-self: center;
+    align-items: center; 
+    border: 0.2rem;
+    box-shadow:  0px 0.3px 0.9px #0000001a;
+    
+}
+
+.add-todo-button{
+    height: 100%;
+    width: 5%;
+}
+
+.add-todo-input{
+    width: 90%;
+    height: 85%;
+    align-self: center;
+    border: none;
+    font-size: 1.25rem;
+}
+
+.add-todo-container .add-todo-input:focus{
+    outline: none;
+}
+
+
+.todo-display-name{
+    font-size: 1.75rem;
+}
+
+.add-todo-options{
+    background-color: #faf9f8;
+    height:4rem;
+    width: 95%;
+    display:flex;
+    margin : 0 1.15rem;  
+    align-items: center;
+    box-shadow: 0px 0.3px 0.9px #0000001a, 0px 1.6px 3.6px #0000001a;
+    
+}
+
+.add-todo-button-other{
+    font-size: 1.25rem;
+    margin-left:75%; 
+    justify-self: flex-end;
+    width: 4%;
+    height: 80%;
+    background-color: #ffffff;   
+}
+
+.todos-display-container{
+    width: 95%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding: 1rem 0rem;
+}
+
+.todo-display-container{
+    background-color: #ffffff;
+    min-height: 4rem;
+    width: 90.55%;
+    display:flex;
+    margin : 0.5rem 1.5rem;  
+    padding: 0rem 1rem;
+    align-items: center;
+    box-shadow: 0px 0.3px 0.9px #0000001a, 0px 1.6px 3.6px #0000001a;
+}
+
+.todo-name{
+    font-size: 1.5rem;
+    width: 80%;
+}
+
+.completed-todo{
+    text-decoration:line-through
+}
+
+.completed-container{
+    background-color: #faf9f8;
+}

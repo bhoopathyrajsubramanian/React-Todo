@@ -1,118 +1,127 @@
 /*main div */
+$header-bg-color: #2564cf;
+$header-bg-hover-color: #215aba;
+$input-bg-color: #fefefe;
 
 button {
-    border: none;
-    background: transparent;
+  border: none;
+  background: transparent;
 }
 
 .header {
-    height: 8%;
-    width: 100%;
-    background-color: #2564cf;
-    display: flex;
+  height: 8%;
+  flex: 1;
+  background-color: $header-bg-color;
+  display: flex;
 }
 
 .button-header {
-    width: 40%;
+  display: flex;
+  width: 40%;
+}
+
+.header-title {
+  width: 9rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .header-menu {
-    width: 6%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  width: 4rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.header-menu:hover {
+  background-color: $header-bg-hover-color;
 }
 
 .button-header-others {
-    width: 14%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  width: 4rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-search {
-    width: 64%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-others {
-    width: 25%;
-    display: flex;
-    justify-content: flex-end;
-
+  width: 15rem;
+  display: flex;
+  margin-right: 1rem;
 }
 
 .header-user {
-    width: 14%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input-field {
-    height: 70%;
-    width: 50%;
-    border-radius: 0.4rem;
-    background-color: #fefefe;
-    display: flex;
-    align-items: center;
-    align-content: space-around;
+  height: 70%;
+  width: 50%;
+  border-radius: 0.4rem;
+  background-color: $input-bg-color;
+  display: flex;
+  align-items: center;
+  align-content: space-around;
+  padding-left: 0.3rem;
 
-    .search-icon {
-        height: 45%;
-        width: 10%;
-        transform: scaleX(-1);
+  .search-icon {
+    height: 4rem;
+    width: 4rem;
+    transform: scaleX(-1);
+  }
+  .header-input {
+    width: 90%;
+    height: 80%;
+    border: none;
+    input:focus {
+      outline: none;
     }
-
-    .header-input {
-        width: 90%;
-        height: 80%;
-        border: none;
-
-        input:focus {
-            outline: none
-        }
-
-    }
-}
-
-.header-icon {
-    height: 2rem;
-    width: 2rem;
-
+  }
 }
 
 .settings {
-    height: 2rem;
-    width: 2rem;
-    transform: scaleX(-1);
+  height: 2rem;
+  width: 2rem;
+  transform: scaleX(-1);
 }
 
 .button-header-user {
-    height: 3rem;
-    width: 3rem;
-    background-color: transparent;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #fefefe;
-    border: 0.1rem solid #fefefe;
+  height: 3rem;
+  width: 3rem;
+  background-color: transparent;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: $input-bg-color;
+  border: 0.1rem solid $input-bg-color;
 }
 
 .header-todo-link {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: #fefefe;
-    padding: 0;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: $input-bg-color;
+  padding: 0;
 }
 
 .header-input {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
+}
+
+.button-header-others:hover {
+  background-color: $header-bg-hover-color;
 }

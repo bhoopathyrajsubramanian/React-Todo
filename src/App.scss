@@ -1,17 +1,22 @@
 
 .todo-page {
     height: 100vh;
+    width:100vw;
     background-color:#faf9f8;
 }
 
 .todo-body-section {
-    width: flex 1;
-    height: 90%;
+    width: 100%;
+    height: 92%;
     display: flex;
 }
 
 .navbar-todobody {
     display:flex;
-    width: 100%;
-    height: 100%;
+    flex :1;
+}
+
+img{
+    height: 1.80rem !important;
+    width:1.80rem !important;
 }

@@ -3,7 +3,7 @@ import Navbar from './Components/Navbar/Navbar';
 import './App.scss'
 import TodoBody from './Components/TodoBody/TodoBody';
 import { useState } from 'react';
-import ModifyTodo from './ModifyTodo/ModifyTodo';
+import ModifyTodo from './Components/ModifyTodo/ModifyTodo';
 import { Routes, Route } from 'react-router-dom';
 function App() {
   const [toggle, setToggle] = useState(false)

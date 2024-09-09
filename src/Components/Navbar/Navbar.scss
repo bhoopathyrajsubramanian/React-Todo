@@ -1,14 +1,22 @@
-$percent :100%;
+$percent: 100%;
+$border-color: #2564cf;
+$background-color: #b7d7f6;
+$navbar-bg-color: #ffffff;
+$navbar-divider-color: #e1dfdd;
+$navbar-hover-color: #f5f5f5;
 
 @mixin flex {
   display: flex;
   align-items: center;
 }
 
+input:focus {
+  outline: none;
+}
+
 button {
   cursor: pointer;
 }
-
 
 @mixin icon {
   height: 1.25rem;
@@ -16,24 +24,19 @@ button {
 }
 
 .active {
-  border-left: 3px solid#2564cf;
-  background-color: #b7d7f6;
-}
-
-.add-icon {
-  height: 2.5rem;
-  width: 2.5rem;
-
+  border-left: 3px solid $border-color;
+  background-color: $background-color;
 }
 
 .navbar {
-  width: 27rem;
-  height: $percent;
-  background-color: #ffffff;
+  width: 28rem;
+  height: 100%;
+  flex-shrink: 0;
+  background-color: $navbar-bg-color;
 }
 
 .navbar-header {
-  width: $percent;
+  flex-grow: 1;
   height: 10%;
   display: flex;
   align-items: center;
@@ -47,9 +50,9 @@ button {
 .navbar-divider {
   width: 90%;
   height: 0.125rem;
-  background-color: #e1dfdd;
+  background-color: $navbar-divider-color;
   display: flex;
-  margin:  0.5rem 0.5rem;
+  margin: 0.5rem 0.5rem;
 }
 
 .navbar-content {
@@ -60,15 +63,14 @@ button {
   align-items: center;
 }
 
-.navbar-list{
-  height: 37.5%;
+.navbar-list {
+  height: 35.5%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
+  overflow: auto;
 }
-
 
 .button-container {
   width: 100%;
@@ -80,7 +82,7 @@ button {
 }
 
 .button-container:hover {
-  background-color: rgb(180, 168, 168);
+  background-color: $navbar-hover-color;
   font-weight: 500;
 }
 
@@ -96,16 +98,14 @@ button {
 }
 
 .navbar-footer {
-  width: 100%;
+  flex: 1;
   min-height: 3.75rem;
-  background-color: beige;
   display: flex;
   justify-content: space-around;
   align-items: center;
-
   img {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 2rem;
+    width: 2rem;
   }
 }
 
@@ -119,19 +119,11 @@ button {
 
 .navbar-list-input {
   height: 90%;
-  width: 70%;
+  width: 65%;
   border: none;
   font-size: 1.3rem;
 }
 
 .navbar-list-input:hover {
-  background-color: azure;
-}
-
-button:hover {
-  background-color: bisque;
-}
-
-input:focus {
-  outline: none;
+  background-color: $navbar-hover-color;
 }

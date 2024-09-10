@@ -8,11 +8,11 @@ import TwoUserIcon from "../../assets/images/two-user.svg";
 import TodoIcon from "../../assets/images/checkmarkp.svg";
 import PageIcon from "../../assets/images/page.svg";
 import AddIcon from "../../assets/images/add.svg";
-import ListIcon from "../../assets/images/list.svg";
+import ListIcon from "../../assets/images/queue.svg";
 import { useNavigate } from "react-router-dom";
 import "./Navbar.scss";
 
-const Navbar = ({ handleChange, toggle }) => {
+const Navbar = ({ handleChange, toggle,handleCreatePage }) => {
   const [active, setActive] = useState("");
   const handleChangeClass = (className) => {
     setActive(className);
@@ -31,16 +31,21 @@ const Navbar = ({ handleChange, toggle }) => {
   const handleClick = () => {
     if (todoName.current.value !== "") {
       setListName({
+        id: groupName.length,
         name: todoName.current.value,
-        id: listName?.length,
-        todolist: [],
+        completedTodo: [],
+        inCompletedTodo:[]
       });
     }
     todoName.current.value = "";
   };
 
   useEffect(() => {
-    if (listName.name?.length > 0) setGroupName((prev) => [listName, ...prev]);
+    if (listName.name?.length > 0) {
+      setGroupName((prev) => [listName, ...prev]);
+      handleCreatePage(listName)
+      navigate(`/:${listName.name}`);
+    }
   }, [listName]);
 
   return (
@@ -55,7 +60,7 @@ const Navbar = ({ handleChange, toggle }) => {
               return (
                 <button
                   className={`button-container ${
-                    active == buttons.value ? "active" : ""
+                    active === buttons.value ? "active" : ""
                   }`}
                   onClick={() => {
                     handleChangeClass(buttons.value);
@@ -79,7 +84,7 @@ const Navbar = ({ handleChange, toggle }) => {
               return (
                 <button
                   className={`button-container ${
-                    active == value.name ? "active" : ""
+                    active === value.name ? "active" : ""
                   }`}
                   onClick={() => {
                     handleChangeClass(value.name);
@@ -120,7 +125,7 @@ const Navbar = ({ handleChange, toggle }) => {
               <img
                 src={MailIcon}
                 alt="mailicon"
-                className="navbar-toggle-icon"
+                className="navbar-toggle-mail"
               />
             </button>
             <button className="navbar-footer-button">

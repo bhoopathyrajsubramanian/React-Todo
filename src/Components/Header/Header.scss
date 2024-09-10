@@ -61,7 +61,7 @@ button {
 }
 
 .header-user {
-  width: 3rem;
+  width: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,6 +81,7 @@ button {
     height: 4rem;
     width: 4rem;
     transform: scaleX(-1);
+    padding: 0.5rem;
   }
   .header-input {
     width: 90%;
@@ -123,5 +124,9 @@ button {
 }
 
 .button-header-others:hover {
+  background-color: $header-bg-hover-color;
+}
+
+.header-user:hover {
   background-color: $header-bg-hover-color;
 }

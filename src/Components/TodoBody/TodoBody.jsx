@@ -16,22 +16,23 @@ import ModifyTodo from "../ModifyTodo/ModifyTodo";
 import { useLocation } from "react-router-dom";
 
 const TodoBody = ({ handleChange, toggle, handleDo, change }) => {
-  let dayArray = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-  ];
+  // let dayArray = [
+  //   "sunday",
+  //   "monday",
+  //   "tuesday",
+  //   "wednesday",
+  //   "thursday",
+  //   "friday",
+  // ];
   let fullDate = new Date();
-  let day = fullDate.getDay();
-  let month = fullDate.getMonth();
-  let date = fullDate.getDate();
+  // let day = fullDate.getDay();
+  // let month = fullDate.getMonth();
+  // let date = fullDate.getDate();
   const [todo, setTodo] = useState();
   const taskName = useRef("");
   const [todoList, setTodoList] = useState([]);
   const [completedTodo, setCompletedTodo] = useState([]);
+  const [showOptions, setShowOptions] = useState(false);
 
   let location = useLocation();
   let data = location.pathname;
@@ -40,6 +41,10 @@ const TodoBody = ({ handleChange, toggle, handleDo, change }) => {
   data = data.replace("%20", " ");
   data = data.split(":").splice(1, 1);
   console.log(data);
+
+  const handleShow = () => {
+    setShowOptions(true);
+  };
 
   const handleComplete = (id) => {
     setTodoList(
@@ -56,7 +61,6 @@ const TodoBody = ({ handleChange, toggle, handleDo, change }) => {
   };
 
   const handleChangeImportant = (id) => {
-    console.log("fdfds");
     setTodoList(
       todoList.map((todo) =>
         todo?.id === id ? { ...todo, isImportant: !todo.isImportant } : todo
@@ -142,27 +146,31 @@ const TodoBody = ({ handleChange, toggle, handleDo, change }) => {
             className="add-todo-input"
             placeholder="Add a todo"
             ref={taskName}
+            onFocus={handleShow}
+            onBlur={handleShow}
             onKeyUp={(value) => handleKeyEnter(value)}
           />
         </div>
-        <div className="add-todo-options">
-          <button className="add-todo-button">
-            <img src={TodoIcon} alt="todo" className="add-icon" />
-          </button>
-          <button className="add-todo-button">
-            <img
-              src={NotificationIcon}
-              alt="notification"
-              className="add-icon"
-            />
-          </button>
-          <button className="add-todo-button">
-            <img src={RepeatIcon} alt="repeat" className="add-icon" />
-          </button>
-          <button className="add-todo-button-other" onClick={handleSubmit}>
-            Add
-          </button>
-        </div>
+        {showOptions && (
+          <div className="add-todo-options">
+            <button className="add-todo-button">
+              <img src={TodoIcon} alt="todo" className="add-icon" />
+            </button>
+            <button className="add-todo-button">
+              <img
+                src={NotificationIcon}
+                alt="notification"
+                className="add-icon"
+              />
+            </button>
+            <button className="add-todo-button">
+              <img src={RepeatIcon} alt="repeat" className="add-icon" />
+            </button>
+            <button className="add-todo-button-other" onClick={handleSubmit}>
+              Add
+            </button>
+          </div>
+        )}
         <div className="todos-display-container">
           {todoList.map((value, key) => {
             return (
@@ -205,7 +213,7 @@ const TodoBody = ({ handleChange, toggle, handleDo, change }) => {
                     <img
                       className="add-icon"
                       src={CheckMarkIcon}
-                      alt='checkmarkicon'
+                      alt="checkmarkicon"
                       onClick={() => handleComplete(value.id)}
                     />
                   </button>
@@ -226,7 +234,7 @@ const TodoBody = ({ handleChange, toggle, handleDo, change }) => {
           })}
         </div>
       </div>
-      {change && <ModifyTodo />}
+      {change && <ModifyTodo change={change} handleChange={handleDo} />}
     </>
   );
 };

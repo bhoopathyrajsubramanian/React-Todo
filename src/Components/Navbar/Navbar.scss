@@ -1,9 +1,4 @@
-$percent: 100%;
-$border-color: #2564cf;
-$background-color: #b7d7f6;
-$navbar-bg-color: #ffffff;
-$navbar-divider-color: #e1dfdd;
-$navbar-hover-color: #f5f5f5;
+@import '../../theme.scss';
 
 @mixin flex {
   display: flex;

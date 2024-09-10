@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import { displayOptions, displayType } from "../../constant";
+import { displayOptions, displayType, displaySettings } from "../../constant";
 import { useReducer } from "react";
 import Menu from "../../assets/images/menu-nav.svg";
 import ThreeDots from "../../assets/images/three-dots.svg";
 import AddIcon from "../../assets/images/add.svg";
-import TodoIcon from "../../assets/images/calender.svg";
-import RepeatIcon from "../../assets/images/repeat.svg";
-import NotificationIcon from "../../assets/images/notification.svg";
 import StarIcon from "../../assets/images/star.svg";
 import CircleIcon from "../../assets/images/circle-oval.svg";
 import CheckMarkIcon from "../../assets/images/checkmarkadd.svg";
@@ -153,19 +150,18 @@ const TodoBody = ({ handleChange, toggle, handleDo, change }) => {
         </div>
         {showOptions && (
           <div className="add-todo-options">
-            <button className="add-todo-button">
-              <img src={TodoIcon} alt="todo" className="add-icon" />
-            </button>
-            <button className="add-todo-button">
-              <img
-                src={NotificationIcon}
-                alt="notification"
-                className="add-icon"
-              />
-            </button>
-            <button className="add-todo-button">
-              <img src={RepeatIcon} alt="repeat" className="add-icon" />
-            </button>
+            {displaySettings.map((value, key) => {
+              return (
+                <button className="add-todo-button">
+                  <img
+                    src={value.image}
+                    alt={value.name}
+                    className="add-icon"
+                  />
+                </button>
+              );
+            })}
+
             <button className="add-todo-button-other" onClick={handleSubmit}>
               Add
             </button>

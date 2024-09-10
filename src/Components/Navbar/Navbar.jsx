@@ -12,7 +12,7 @@ import ListIcon from "../../assets/images/queue.svg";
 import { useNavigate } from "react-router-dom";
 import "./Navbar.scss";
 
-const Navbar = ({ handleChange, toggle,handleCreatePage }) => {
+const Navbar = ({ handleChange, toggle, handleCreatePage }) => {
   const [active, setActive] = useState("");
   const handleChangeClass = (className) => {
     setActive(className);
@@ -34,7 +34,7 @@ const Navbar = ({ handleChange, toggle,handleCreatePage }) => {
         id: groupName.length,
         name: todoName.current.value,
         completedTodo: [],
-        inCompletedTodo:[]
+        inCompletedTodo: [],
       });
     }
     todoName.current.value = "";
@@ -43,7 +43,7 @@ const Navbar = ({ handleChange, toggle,handleCreatePage }) => {
   useEffect(() => {
     if (listName.name?.length > 0) {
       setGroupName((prev) => [listName, ...prev]);
-      handleCreatePage(listName)
+      handleCreatePage(listName);
       navigate(`/:${listName.name}`);
     }
   }, [listName]);

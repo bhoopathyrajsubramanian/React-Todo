@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import CheckMarkIcon from "../../assets/images/checkmark-circle.svg";
 import StarIcon from "../../assets/images/star.svg";
 import AddICon from "../../assets/images/add.svg";
-import "./ModifyTodo.scss";
 import DeleteIcon from "../../assets/images/delete.svg";
 import ExitIcon from "../../assets/images/exit.svg";
+import "./ModifyTodo.scss";
 
 const ModifyTodo = ({ handleChange }) => {
   const subTodoName = useRef("");

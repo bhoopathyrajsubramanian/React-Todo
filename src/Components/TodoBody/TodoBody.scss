@@ -1,7 +1,4 @@
-$hundred: 100%;
-$add-todo-container-bg-color: #ffffff;
-$box-shadow: #0000001a;
-$todo-options-bg-color: #faf9f8;
+@import "../../theme.scss";
 .todo-body {
   // width: 100%;
   height: 100%;

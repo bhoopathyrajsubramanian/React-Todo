@@ -1,8 +1,8 @@
-@import '../../theme.scss';
+@import "../../theme.scss";
 
 @mixin icon-properties {
-  height: 24px;
-  width: 24px;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 @mixin box-properties {
@@ -34,78 +34,112 @@
     overflow: auto;
     align-items: center;
   }
-}
 
-.todo-header-title {
-  @include box-properties;
-  position: sticky;
-  z-index: 10;
-  top: 0;
-  .todo-icon {
-    @include icon-properties;
+  .todo-header-title {
+    @include box-properties;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    .todo-icon {
+      @include icon-properties;
+    }
+    .todo-name {
+      flex-grow: 1;
+    }
   }
-  .todo-name {
-    flex-grow: 1;
+  .sub-todo-list {
+    @include box-properties;
+    .add-icon {
+      @include icon-properties;
+    }
+    input {
+      flex-grow: 1;
+      height: 100%;
+      width: 100%;
+      border: none;
+      font-size: 1.25rem;
+    }
   }
-}
-.sub-todo-list {
-  @include box-properties;
-  .add-icon {
-    @include icon-properties;
+
+  .todo-body-options {
+    @include box-properties;
+    .options-image {
+      @include icon-properties;
+    }
+    .options-name {
+      width: 15rem;
+    }
   }
-  input {
-    flex-grow: 1;
+
+  .delete-sub-todo-icon {
+    height: 1rem !important;
+    width: 1rem !important;
+  }
+
+  .todo-completed {
+    @include box-properties;
+    .options-image {
+      @include icon-properties;
+    }
+    .options-name {
+      text-decoration: line-through;
+      width: 15rem;
+    }
+  }
+
+  .delete-sub-todo {
+    align-self: center;
+    width: 4rem;
     height: 100%;
-    width: 100%;
-    border: none;
-    font-size: 1.25rem;
   }
-}
 
-.todo-body-options {
-  @include box-properties;
-  .options-image {
-    @include icon-properties;
-  }
-}
-
-.todo-option-notes:hover,
-.todo-body-options:hover,
-.todo-header-title:hover,
-.add-notes-field:hover
- {
-  background-color: $bg-hover-color;
-}
-
-.todo-option-notes {
-  min-height: 7rem;
-  width: 24.5rem;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  background-color: $header-title-bg-color;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 1rem 1rem 1rem 1.5rem;
-  gap: 1rem;
-  font-size: 1.25rem;
-  .add-notes-field {
-    flex-grow: 1;
-    height: 100%;
-    border: none;
-    font-size: 1.25rem;
-  }
+  .todo-option-notes:hover,
+  .todo-body-options:hover,
+  .todo-header-title:hover,
   .add-notes-field:hover {
+    background-color: $bg-hover-color;
+  }
+
+  .todo-option-notes {
+    min-height: 7rem;
+    width: 24.5rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    background-color: $header-title-bg-color;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem 1rem 1rem 1.5rem;
+    gap: 1rem;
+    font-size: 1.25rem;
+    .add-notes-field {
+      flex-grow: 1;
+      height: 100%;
+      border: none;
+      font-size: 1.25rem;
+    }
+    .add-notes-field:hover {
+      outline: none;
+    }
+  }
+
+  .finished {
+    text-decoration: line-through;
+  }
+
+  .todo-footer {
+    flex-grow: 1;
+    width: 85%;
+    background-color: $modify-todo-bg-color;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  input:focus{
     outline: none;
   }
-}
-
-.todo-footer {
-  flex-grow: 1;
-  width: 85%;
-  background-color: $modify-todo-bg-color;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  textarea:focus{
+    outline: none;
+  }
 }

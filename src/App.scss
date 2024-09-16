@@ -2,20 +2,24 @@
   height: 100vh;
   width: 100vw;
   background-color: #faf9f8;
-}
+  
+  .todo-body-section {
+    width: 100%;
+    height: 92%;
+    display: flex;
+  }
 
-.todo-body-section {
-  width: 100%;
-  height: 92%;
-  display: flex;
-}
+  .navbar-todobody {
+    display: flex;
+    flex: 1;
+  }
 
-.navbar-todobody {
-  display: flex;
-  flex: 1;
-}
-
-img {
-  height: 1.8rem !important;
-  width: 1.8rem !important;
+  img {
+    height: 1.8rem !important;
+    width: 1.8rem !important;
+  }
+  button {
+    border: none;
+    background: transparent;
+  }
 }

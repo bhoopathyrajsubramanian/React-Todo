@@ -1,10 +1,18 @@
-still yet to complete
+still yet to complete 
+work on comment s
+push it to github 
 
-change the functionalites by redux
 
-incompleted todo counts in navbar 
+few more functionalites to complete 
+add to my dayy 
 
-delete option for todos
+
+
+code clearence
+split functionalities  not more than 20 lines 
+implement comments start with simple terms 
+
+
 
 
 

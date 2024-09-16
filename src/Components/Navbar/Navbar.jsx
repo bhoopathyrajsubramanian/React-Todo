@@ -1,5 +1,7 @@
 import { navbarContent } from "../../constant.js";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "../../assets/images/menu-nav.svg";
 import CalendarIcon from "../../assets/images/todo-calender.svg";
 import MailIcon from "../../assets/images/email.svg";
@@ -9,18 +11,39 @@ import TodoIcon from "../../assets/images/checkmarkp.svg";
 import PageIcon from "../../assets/images/page.svg";
 import AddIcon from "../../assets/images/add.svg";
 import ListIcon from "../../assets/images/queue.svg";
-import { useNavigate } from "react-router-dom";
 import "./Navbar.scss";
 
-const Navbar = ({ handleChange, toggle, handleCreatePage }) => {
+const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
   const [active, setActive] = useState("");
   const handleChangeClass = (className) => {
     setActive(className);
   };
   const todoName = useRef("");
+  let list = useSelector((state) => state);
   const [groupName, setGroupName] = useState([]);
   const [listName, setListName] = useState({});
-  const navigate = useNavigate();
+  const navigate = useNavigate();                                                                                                             
+  useEffect(() => {
+    const data = JSON.stringify(list);
+    localStorage.setItem("todoLists", data);
+  }, [list]);
+
+  useEffect(() => {
+    let subTodo = list;
+    let array = subTodo.slice(6);
+    if (array) {
+      setGroupName(array);
+    }
+  }, []);
+  /**
+ * @name handleKeyPress
+ * @description  this function verifies the key code of the input field and implement the handleClick function.
+ *
+ * @param {string} value code of the input field
+ * @returns {void} This function does not return a value.
+ * @author Bhoopathy Raj
+ */
+
 
   const handleKeyPress = (value) => {
     if (value.key === "Enter") {
@@ -28,13 +51,23 @@ const Navbar = ({ handleChange, toggle, handleCreatePage }) => {
     }
   };
 
+   /**
+ * @name handleClick
+ * @description this function stores a list in list name array . and set todo name as empty.
+ *
+ * @param {string} value code of the input field
+ * @returns {void} This function does not return a value.
+ * @author Bhoopathy Raj
+ */
+
+
   const handleClick = () => {
     if (todoName.current.value !== "") {
       setListName({
-        id: groupName.length,
+        id: list.length,
         name: todoName.current.value,
-        completedTodo: [],
-        inCompletedTodo: [],
+        todo: [],
+        count: 0,
       });
     }
     todoName.current.value = "";
@@ -44,7 +77,7 @@ const Navbar = ({ handleChange, toggle, handleCreatePage }) => {
     if (listName.name?.length > 0) {
       setGroupName((prev) => [listName, ...prev]);
       handleCreatePage(listName);
-      navigate(`/:${listName.name}`);
+      navigate(`todo/:${listName.name}`);
     }
   }, [listName]);
 
@@ -64,7 +97,7 @@ const Navbar = ({ handleChange, toggle, handleCreatePage }) => {
                   }`}
                   onClick={() => {
                     handleChangeClass(buttons.value);
-                    navigate(`/:${buttons.value}`);
+                    navigate(`todo/:${buttons.value}`);
                   }}
                   key={key}
                 >
@@ -74,13 +107,18 @@ const Navbar = ({ handleChange, toggle, handleCreatePage }) => {
                     className="navbar-toggle-icon"
                   />
                   <div className="button-values">{buttons?.value}</div>
+                  <div className="list-count">
+                    {list?.find((list) => list.name === buttons.value)?.count >
+                      0 &&
+                      list?.find((list) => list.name === buttons.value)?.count}
+                  </div>
                 </button>
               );
             })}
           </div>
           <div className="navbar-divider"></div>
           <div className="navbar-list">
-            {groupName.map((value, key) => {
+            {groupName?.map((value, key) => {
               return (
                 <button
                   className={`button-container ${
@@ -88,7 +126,7 @@ const Navbar = ({ handleChange, toggle, handleCreatePage }) => {
                   }`}
                   onClick={() => {
                     handleChangeClass(value.name);
-                    navigate(`/:${value.name}`);
+                    navigate(`todo/:${value.name}`);
                   }}
                   key={key}
                 >
@@ -98,6 +136,11 @@ const Navbar = ({ handleChange, toggle, handleCreatePage }) => {
                     className="navbar-toggle-icon"
                   />
                   <div className="button-values">{value?.name}</div>
+                  <div className="list-count">
+                    {list?.find((list) => list.name === value.name)?.count >
+                      0 &&
+                      list?.find((list) => list.name === value.name)?.count}
+                  </div>
                 </button>
               );
             })}

@@ -109,3 +109,7 @@ export const displaySettings = [
     image: RepeatIcon,
   },
 ];
+
+export const day = [
+  "Sunday","monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
+]

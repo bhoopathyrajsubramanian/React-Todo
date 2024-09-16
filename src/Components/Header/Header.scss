@@ -1,129 +1,124 @@
-@import '../../theme.scss';
-
-button {
-  border: none;
-  background: transparent;
-}
+@import "../../theme.scss";
 
 .header {
   height: 8%;
   flex: 1;
   background-color: $header-bg-color;
   display: flex;
-}
 
-.button-header {
-  display: flex;
-  width: 40%;
-}
-
-.header-title {
-  width: 9rem;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-
-.header-menu {
-  width: 4rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.header-menu:hover {
-  background-color: $header-bg-hover-color;
-}
-
-.button-header-others {
-  width: 4rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-search {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-others {
-  width: 15rem;
-  display: flex;
-  margin-right: 1rem;
-}
-
-.header-user {
-  width: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.input-field {
-  height: 70%;
-  width: 50%;
-  border-radius: 0.4rem;
-  background-color: $input-bg-color;
-  display: flex;
-  align-items: center;
-  align-content: space-around;
-  padding-left: 0.3rem;
-
-  .search-icon {
-    height: 4rem;
-    width: 4rem;
-    transform: scaleX(-1);
-    padding: 0.5rem;
+  .button-header {
+    display: flex;
+    width: 40%;
   }
-  .header-input {
-    width: 90%;
-    height: 80%;
-    border: none;
-    input:focus {
-      outline: none;
+
+  .header-title {
+    width: 9rem;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .header-menu {
+    width: 4rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .header-menu:hover {
+    background-color: $header-bg-hover-color;
+  }
+
+  .button-header-others {
+    width: 4rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-search {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-others {
+    width: 15rem;
+    display: flex;
+    margin-right: 1rem;
+  }
+
+  .header-user {
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-field {
+    height: 70%;
+    width: 50%;
+    border-radius: 0.4rem;
+    background-color: $input-bg-color;
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+    padding-left: 0.3rem;
+
+    .search-icon {
+      height: 4rem;
+      width: 4rem;
+      transform: scaleX(-1);
+      padding: 0.5rem;
+    }
+    .header-input {
+      width: 90%;
+      height: 80%;
+      border: none;
+      input:focus {
+        outline: none;
+      }
     }
   }
-}
 
-.settings {
-  height: 2rem;
-  width: 2rem;
-  transform: scaleX(-1);
-}
+  .settings {
+    height: 2rem;
+    width: 2rem;
+    transform: scaleX(-1);
+  }
 
-.button-header-user {
-  height: 3rem;
-  width: 3rem;
-  background-color: transparent;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: $input-bg-color;
-  border: 0.1rem solid $input-bg-color;
-}
+  .button-header-user {
+    height: 3rem;
+    width: 3rem;
+    background-color: transparent;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $input-bg-color;
+    border: 0.1rem solid $input-bg-color;
+  }
 
-.header-todo-link {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: $input-bg-color;
-  padding: 0;
-}
+  .header-todo-link {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: $input-bg-color;
+    padding: 0;
+  }
 
-.header-input {
-  font-size: 1.25rem;
-}
+  .header-input {
+    font-size: 1.25rem;
+  }
 
-.button-header-others:hover {
-  background-color: $header-bg-hover-color;
-}
+  .button-header-others:hover {
+    background-color: $header-bg-hover-color;
+  }
 
-.header-user:hover {
-  background-color: $header-bg-hover-color;
+  .header-user:hover {
+    background-color: $header-bg-hover-color;
+  }
 }

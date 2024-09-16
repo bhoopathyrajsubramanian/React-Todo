@@ -1,10 +1,10 @@
 still yet to complete 
-work on comment s
 push it to github 
 
 
 few more functionalites to complete 
-add to my dayy 
+add to my day 
+id -problem
 
 
 

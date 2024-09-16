@@ -9,6 +9,7 @@ import {
   countTodo,
   setDueDate,
 } from "../../redux/actions/todoActions";
+import { navbarContent } from "../../constant";
 import DatePicker from "react-datepicker";
 import Menu from "../../assets/images/menu-nav.svg";
 import ThreeDots from "../../assets/images/three-dots.svg";
@@ -20,9 +21,14 @@ import ModifyTodo from "../ModifyTodo/ModifyTodo";
 import StarFilled from "../../assets/images/star-filled.svg";
 import UpArrow from "../../assets/images/up-arrow.svg";
 import DownArrow from "../../assets/images/down-arrow.svg";
+import userIcon from "../../assets/images/user.svg";
+import FlagIcon from "../../assets/images/flag.svg";
+import HomeIcon from "../../assets/images/home.svg";
+import SunIcon from "../../assets/images/sun.svg";
+import CalendarIcon from "../../assets/images/todo-calender.svg";
 
 import "./TodoBody.scss";
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
   const taskName = useRef("");
   const [todoList, setTodoList] = useState([]);
@@ -32,6 +38,7 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
   const [inCompletedTodo, setInCompletedTodo] = useState(
     list?.todo?.filter((todo) => todo?.isCompleted === false)
   );
+  const [displayList, setDisplayList] = useState("");
   useEffect(() => {
     setInCompletedTodo(
       list?.todo?.filter((todo) => todo?.isCompleted === false)
@@ -40,12 +47,17 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
   }, [list?.todo]);
   console.log(list);
 
-  const [showCompletedTodo, setshowCompletedTodo] = useState(false);
+  useEffect(() => {
+    setDisplayList(navbarContent.find((item) => item.value === list.name));
+  }, [list]);
+
+  console.log(displayList);
+
+  const [showCompletedTodo, setshowCompletedTodo] = useState(true);
 
   useEffect(() => {
     dispatch(countTodo(list.id, inCompletedTodo?.length));
   }, [inCompletedTodo?.length]);
-  const [tododate, setTodoDate] = useState(new Date())
 
   const [showOptions, setShowOptions] = useState(false);
   const [modifiedTodo, setModifiedTodo] = useState();
@@ -159,16 +171,15 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
    * @name handleTodoDate
    * @description this dispatcher function update duedate of the todo
    * @param {todoId} todoId this todoId is in the todolist
-   *  @param {date} date the dueDate that has to be added 
+   *  @param {date} date the dueDate that has to be added
    * @returns {void} This function does not return a value.
    * @author Bhoopathy Raj
    */
 
-  const handleTodoDate = (date,todoId) =>{
-    dispatch(setDueDate(todoId,list.id,date))
-    
-  }
-  console.log(new Date())
+  const handleTodoDate = (date, todoId) => {
+    dispatch(setDueDate(todoId, list.id, date));
+  };
+  console.log(new Date());
 
   return (
     <>
@@ -176,9 +187,17 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
         <div className="todo-body-header">
           <div className="todo-display-content">
             <button className="button-menu" onClick={handleChange}>
-              <img src={Menu} alt="menu icon" className="menu-icon" />
+              <img
+                src={
+                  (toggle && displayList?.Image && displayList?.Image) || Menu
+                }
+                alt="menu icon"
+                className="menu-icon"
+              />
             </button>
-            <p className="todo-display-name">{data ? data : "My Day"}</p>
+            <p className="todo-display-name">
+              {displayList?.value ? displayList?.value : data}
+            </p>
             <button className="button-menu">
               <img className="menu-icon" src={ThreeDots} alt="threedots" />
             </button>
@@ -272,8 +291,11 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
                   {value?.task}
                 </div>
                 <button className="todo-display-container-duedate">
-                <DatePicker  selected={value?.dueDate} className="duedate-field"
-                  onChange={(date) => handleTodoDate(date,value.id)}/>
+                  <DatePicker
+                    selected={value?.dueDate}
+                    className="duedate-field"
+                    onChange={(date) => handleTodoDate(date, value.id)}
+                  />
                 </button>
                 <button className="add-todo-button">
                   <img
@@ -323,18 +345,21 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
                   >
                     {value?.task}
                   </div>
-                <button className="todo-display-container-duedate">
-                <DatePicker  selected={value?.dueDate} className="duedate-field"
-                  onChange={(date) => handleTodoDate(date,value.id)}/>
-                </button>
-                <button className="add-todo-button">
-                  <img
-                    src={value.isImportant ? StarFilled : StarIcon}
-                    alt={"star"}
-                    className="add-icon"
-                    onClick={() => handleChangeImportant(value.id)}
-                  />
-                </button>
+                  <button className="todo-display-container-duedate">
+                    <DatePicker
+                      selected={value?.dueDate}
+                      className="duedate-field"
+                      onChange={(date) => handleTodoDate(date, value.id)}
+                    />
+                  </button>
+                  <button className="add-todo-button">
+                    <img
+                      src={value.isImportant ? StarFilled : StarIcon}
+                      alt={"star"}
+                      className="add-icon"
+                      onClick={() => handleChangeImportant(value.id)}
+                    />
+                  </button>
                 </div>
               )
             );
@@ -347,6 +372,7 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
           handleChange={handleDo}
           list={list}
           modifiedTodo={modifiedTodo}
+          handleChangeImportant={handleChangeImportant}
         />
       )}
     </>

@@ -130,9 +130,7 @@ export const changeTodoImportant = (todoId, listId) => ({
  * @returns {Object} The action object with type and payload.
  */
 
-export const setDueDate = (todoId,listId,dueDate) => ({
+export const setDueDate = (todoId, listId, dueDate) => ({
   type: SET_DUE_DATE,
-  payload:{todoId,listId,dueDate}
-})
-
-
+  payload: { todoId, listId, dueDate },
+});

@@ -64,7 +64,7 @@ const todoReducer = (state = todoList, action) => {
         list.id === action.payload.id
           ? {
               ...list,
-              todo: [...list.todo, action.payload.todoName],
+              todo: [action.payload.todoName,...list.todo],
             }
           : list
       );

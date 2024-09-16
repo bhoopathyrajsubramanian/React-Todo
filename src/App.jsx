@@ -2,7 +2,7 @@ import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
 import TodoBody from "./Components/TodoBody/TodoBody";
 
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -20,6 +20,7 @@ const App = () => {
   data = data.replaceAll("%20", " ");
   data = data.split(":").splice(1, 1);
   const list = todoLists.find((item) => item.name === data[0]);
+
   /**
    * @name handleCreatePage
    * @description Handles the creation of a new list by dispatching an action to add it to the Redux store.
@@ -42,7 +43,7 @@ const App = () => {
    * @returns {void}
    */
   const handleChange = () => {
-    setToggle(prevToggle => !prevToggle);
+    setToggle((prevToggle) => !prevToggle);
   };
 
   /**
@@ -95,6 +96,6 @@ const App = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;

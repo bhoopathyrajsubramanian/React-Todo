@@ -1,7 +1,7 @@
 import { navbarContent } from "../../constant.js";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import MenuIcon from "../../assets/images/menu-nav.svg";
 import CalendarIcon from "../../assets/images/todo-calender.svg";
 import MailIcon from "../../assets/images/email.svg";
@@ -22,7 +22,7 @@ const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
   let list = useSelector((state) => state);
   const [groupName, setGroupName] = useState([]);
   const [listName, setListName] = useState({});
-  const navigate = useNavigate();                                                                                                             
+  const navigate = useNavigate();
   useEffect(() => {
     const data = JSON.stringify(list);
     localStorage.setItem("todoLists", data);
@@ -36,14 +36,13 @@ const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
     }
   }, []);
   /**
- * @name handleKeyPress
- * @description  this function verifies the key code of the input field and implement the handleClick function.
- *
- * @param {string} value code of the input field
- * @returns {void} This function does not return a value.
- * @author Bhoopathy Raj
- */
-
+   * @name handleKeyPress
+   * @description  this function verifies the key code of the input field and implement the handleClick function.
+   *
+   * @param {string} value code of the input field
+   * @returns {void} This function does not return a value.
+   * @author Bhoopathy Raj
+   */
 
   const handleKeyPress = (value) => {
     if (value.key === "Enter") {
@@ -51,15 +50,14 @@ const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
     }
   };
 
-   /**
- * @name handleClick
- * @description this function stores a list in list name array . and set todo name as empty.
- *
- * @param {string} value code of the input field
- * @returns {void} This function does not return a value.
- * @author Bhoopathy Raj
- */
-
+  /**
+   * @name handleClick
+   * @description this function stores a list in list name array . and set todo name as empty.
+   *
+   * @param {string} value code of the input field
+   * @returns {void} This function does not return a value.
+   * @author Bhoopathy Raj
+   */
 
   const handleClick = () => {
     if (todoName.current.value !== "") {
@@ -144,7 +142,9 @@ const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
                 </button>
               );
             })}
-            <div className="navbar-add-list">
+           
+          </div>
+          <div className="navbar-add-list">
               <div className="input-list-container">
                 <img src={AddIcon} alt="add" />
                 <input
@@ -162,7 +162,6 @@ const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
                 />
               </button>
             </div>
-          </div>
           <div className="navbar-footer">
             <button className="navbar-footer-button">
               <img

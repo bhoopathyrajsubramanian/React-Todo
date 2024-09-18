@@ -3,14 +3,14 @@ import { DisplayForModifyTodo } from "../../constant";
 import { useEffect, useRef, useState } from "react";
 import {
   addSubTodo,
+  addTodo,
   changeSubTodoStatus,
   changeTodoImportant,
   changeTodoStatus,
   removeSubTodo,
   removeTodo,
 } from "../../redux/actions/todoActions";
-import { useDispatch } from "react-redux";
-import { day } from "../../constant";
+import { useDispatch, useSelector } from "react-redux";
 
 import CheckMarkIcon from "../../assets/images/checkmark-circle.svg";
 import DeleteSubTodoIcon from "../../assets/images/delete-subtodo.svg";
@@ -32,9 +32,14 @@ const ModifyTodo = ({
   const dispatch = useDispatch();
   const subTodoName = useRef("");
   const [todos, setTodos] = useState();
+  const lists = useSelector(state => state)
 
   useEffect(() => {
-    setTodos(list.todo.find((todo) => todo.id === modifiedTodo.id));
+    try {
+      setTodos(list.todo.find((todo) => todo.id === modifiedTodo.id));
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   /**
@@ -49,8 +54,12 @@ const ModifyTodo = ({
    * @author [Bhoopathy Raj]
    */
   const handleKeyPress = (value) => {
-    if (value.key === "Enter") {
-      handleClick();
+    try {
+      if (value.key === "Enter") {
+        handleClick();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   /**
@@ -63,7 +72,11 @@ const ModifyTodo = ({
    * @author Bhoopathy Raj
    */
   const handleChangeStatus = (subTodoId) => {
-    dispatch(changeSubTodoStatus(subTodoId, modifiedTodo.id, list.id));
+    try {
+      dispatch(changeSubTodoStatus(subTodoId, modifiedTodo.id, list.id));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   /**
@@ -76,16 +89,19 @@ const ModifyTodo = ({
    * @author Bhoopathy Raj
    */
   const handleClick = () => {
-    console.log(modifiedTodo);
-    if (subTodoName.current.value !== "") {
-      let todo = {
-        id: todos.subTodo.length,
-        name: subTodoName.current.value,
-        isCompleted: false,
-      };
-      dispatch(addSubTodo(todo, list.id, modifiedTodo.id));
+    try {
+      if (subTodoName.current.value !== "") {
+        let todo = {
+          id: todos.subTodo.length,
+          name: subTodoName.current.value,
+          isCompleted: false,
+        };
+        dispatch(addSubTodo(todo, list.id, modifiedTodo.id));
+      }
+      subTodoName.current.value = "";
+    } catch (error) {
+      console.log(error);
     }
-    subTodoName.current.value = "";
   };
 
   /**
@@ -98,7 +114,11 @@ const ModifyTodo = ({
    * @author Bhoopathy Raj
    */
   const handleDeleteSubTodo = (subTodoId) => {
-    dispatch(removeSubTodo(subTodoId, modifiedTodo.id, list.id));
+    try {
+      dispatch(removeSubTodo(subTodoId, modifiedTodo.id, list.id));
+    } catch (error) {
+      console.log(error, "there is a  error in removesubTodo");
+    }
   };
 
   /**
@@ -111,7 +131,11 @@ const ModifyTodo = ({
    * @author Bhoopathy Raj
    */
   const handleCompleteTodo = (id) => {
-    dispatch(changeTodoStatus(list.id, id));
+    try {
+      dispatch(changeTodoStatus(list.id, id));
+    } catch (error) {
+      console.log(error, "error in handleCompleteTodo");
+    }
   };
 
   /**
@@ -124,8 +148,12 @@ const ModifyTodo = ({
    * @author Bhoopathy Raj
    */
   const handleDeleteTodo = () => {
-    dispatch(removeTodo(list.id, modifiedTodo.id));
-    handleChange(false);
+    try {
+      dispatch(removeTodo(list.id, modifiedTodo.id));
+      handleChange(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   /**
@@ -138,7 +166,19 @@ const ModifyTodo = ({
    * @author Bhoopathy Raj
    */
   const handleChangeTodoStatus = (id) => {
-    dispatch(changeTodoImportant(id, list.id));
+    try {
+      dispatch(changeTodoImportant(id, list.id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdateMyDay = (value) => {
+    let todo = {...value,
+    id : lists[0]?.todo?.length}
+    if (list.id !== 0) {
+      dispatch(addTodo(todo, 0));
+    }
   };
 
   return (
@@ -218,7 +258,11 @@ const ModifyTodo = ({
 
         {DisplayForModifyTodo.map((displayContent, key) => {
           return (
-            <div className="todo-body-options" key={key}>
+            <div
+              className="todo-body-options"
+              key={key}
+              onClick={() => key === 0 && handleUpdateMyDay(todos)}
+            >
               <img
                 src={displayContent.image}
                 alt={displayContent.value}

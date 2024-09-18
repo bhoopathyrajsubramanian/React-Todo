@@ -31,7 +31,14 @@ const App = () => {
    * @returns {void}
    */
   const handleCreatePage = (todo) => {
+    try{
     dispatch(addList(todo));
+    }
+    catch(error)
+    {
+
+      console.log(error)
+    }
   };
 
   /**
@@ -43,7 +50,13 @@ const App = () => {
    * @returns {void}
    */
   const handleChange = () => {
+    try{
     setToggle((prevToggle) => !prevToggle);
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
   };
 
   /**
@@ -56,8 +69,14 @@ const App = () => {
    * @returns {void}
    */
   const handleDo = (toggle) => {
-    console.log(toggle);
+    try{
+     console.log(toggle);
     setChange(toggle);
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
   };
   return (
     <div className="todo-page">

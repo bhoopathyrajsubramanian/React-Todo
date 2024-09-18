@@ -23,7 +23,9 @@ const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
   const [groupName, setGroupName] = useState([]);
   const [listName, setListName] = useState({});
   const navigate = useNavigate();
+    
   useEffect(() => {
+    console.log("list updated")
     const data = JSON.stringify(list);
     localStorage.setItem("todoLists", data);
   }, [list]);
@@ -60,6 +62,7 @@ const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
    */
 
   const handleClick = () => {
+    try{
     if (todoName.current.value !== "") {
       setListName({
         id: list.length,
@@ -69,14 +72,25 @@ const Navbar = ({ handleChange, toggle, handleCreatePage, handleDo }) => {
       });
     }
     todoName.current.value = "";
+  }
+  catch(error)
+  {
+    console.log(error)
+  }
   };
 
   useEffect(() => {
+    try{
     if (listName.name?.length > 0) {
       setGroupName((prev) => [listName, ...prev]);
       handleCreatePage(listName);
       navigate(`todo/:${listName.name}`);
     }
+  }
+  catch(error)
+  {
+    console.log(error)
+  }
   }, [listName]);
 
   return (

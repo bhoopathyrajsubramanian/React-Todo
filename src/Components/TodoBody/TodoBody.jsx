@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { displayOptions, displayType, displaySettings } from "../../constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addTodo,
   changeTodoImportant,
@@ -9,6 +9,7 @@ import {
   countTodo,
   setDueDate,
 } from "../../redux/actions/todoActions";
+import { motion } from "framer-motion";
 import { navbarContent } from "../../constant";
 import DatePicker from "react-datepicker";
 import Menu from "../../assets/images/menu-nav.svg";
@@ -21,15 +22,10 @@ import ModifyTodo from "../ModifyTodo/ModifyTodo";
 import StarFilled from "../../assets/images/star-filled.svg";
 import UpArrow from "../../assets/images/up-arrow.svg";
 import DownArrow from "../../assets/images/down-arrow.svg";
-import userIcon from "../../assets/images/user.svg";
-import FlagIcon from "../../assets/images/flag.svg";
-import HomeIcon from "../../assets/images/home.svg";
-import SunIcon from "../../assets/images/sun.svg";
-import CalendarIcon from "../../assets/images/todo-calender.svg";
-
 import "./TodoBody.scss";
 import "react-datepicker/dist/react-datepicker.css";
-const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
+import "simplebar-react/dist/simplebar.min.css";
+const TodoBody = ({ handleChange, toggle, handleDo,list, change,  data }) => {
   const taskName = useRef("");
   const [todoList, setTodoList] = useState([]);
   const [completedTodo, setCompletedTodo] = useState(
@@ -39,32 +35,46 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
     list?.todo?.filter((todo) => todo?.isCompleted === false)
   );
   const [displayList, setDisplayList] = useState("");
-  useEffect(() => {
-    setInCompletedTodo(
-      list?.todo?.filter((todo) => todo?.isCompleted === false)
-    );
-    setCompletedTodo(list?.todo?.filter((todo) => todo?.isCompleted === true));
-  }, [list?.todo]);
-  console.log(list);
-
-  useEffect(() => {
-    setDisplayList(navbarContent.find((item) => item.value === list.name));
-  }, [list]);
-
-  console.log(displayList);
 
   const [showCompletedTodo, setshowCompletedTodo] = useState(true);
-
-  useEffect(() => {
-    dispatch(countTodo(list.id, inCompletedTodo?.length));
-  }, [inCompletedTodo?.length]);
-
   const [showOptions, setShowOptions] = useState(false);
   const [modifiedTodo, setModifiedTodo] = useState();
-  const handleShow = () => {
-    setShowOptions(true);
-  };
+  useEffect(() => {
+    try {
+      setDisplayList(navbarContent.find((item) => item.value === list.name));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [list]);
+  useEffect(() => {
+    try {
+      setInCompletedTodo(
+        list?.todo?.filter((todo) => todo?.isCompleted === false)
+      );
+      setCompletedTodo(
+        list?.todo?.filter((todo) => todo?.isCompleted === true)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }, [list?.todo]);
+
   const dispatch = useDispatch();
+  useEffect(() => {
+    try {
+      dispatch(countTodo(list.id, inCompletedTodo?.length));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [inCompletedTodo?.length]);
+
+  const handleShow = () => {
+    try {
+      setShowOptions(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   /**
    * @name handleComplete
    * @description Dispatches an action to change the status of a todo item and updates the
@@ -76,12 +86,16 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
    * @author Bhoopathy Raj
    */
   const handleComplete = (id) => {
-    dispatch(changeTodoStatus(list?.id, id));
-    todoList.forEach((todo) => {
-      if (todo?.isCompleted) {
-        setCompletedTodo((prev) => [...prev, todo]);
-      }
-    });
+    try {
+      dispatch(changeTodoStatus(list?.id, id));
+      todoList.forEach((todo) => {
+        if (todo?.isCompleted) {
+          setCompletedTodo((prev) => [...prev, todo]);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   /**
@@ -94,7 +108,11 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
    * @author Bhoopathy Raj
    */
   const handlePass = (modifiedTodo) => {
-    setModifiedTodo(modifiedTodo);
+    try {
+      setModifiedTodo(modifiedTodo);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   /**
@@ -108,13 +126,17 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
    * @author Bhoopathy Raj
    */
   const handleChangeImportant = (id) => {
-    setTodoList(
-      todoList.map((todo) =>
-        todo?.id === id ? { ...todo, isImportant: !todo?.isImportant } : todo
-      )
-    );
-    console.log(id, list.id);
-    dispatch(changeTodoImportant(id, list.id));
+    try {
+      setTodoList(
+        todoList.map((todo) =>
+          todo?.id === id ? { ...todo, isImportant: !todo?.isImportant } : todo
+        )
+      );
+      console.log(id, list.id);
+      dispatch(changeTodoImportant(id, list.id));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   /**
@@ -128,18 +150,22 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
    */
 
   const handleSubmit = () => {
-    if (taskName?.current?.value?.length > 0) {
-      let todo = {
-        id: list?.todo?.length,
-        task: taskName.current.value,
-        isCompleted: false,
-        isImportant: false,
-        dueDate: new Date(),
-        subTodo: [],
-      };
-      dispatch(addTodo(todo, list.id));
+    try {
+      if (taskName?.current?.value?.length > 0) {
+        let todo = {
+          id: list?.todo?.length,
+          task: taskName.current.value,
+          isCompleted: false,
+          isImportant: false,
+          dueDate: new Date(),
+          subTodo: [],
+        };
+        dispatch(addTodo(todo, list.id));
+      }
+      taskName.current.value = "";
+    } catch (error) {
+      console.log(error);
     }
-    taskName.current.value = "";
   };
   /**
    * @name handleKeyEnter
@@ -152,8 +178,12 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
    * @author Bhoopathy Raj
    */
   const handleKeyEnter = (e) => {
-    if (e.code === "Enter") {
-      handleSubmit();
+    try {
+      if (e.code === "Enter") {
+        handleSubmit();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -165,7 +195,11 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
    * @author Bhoopathy Raj
    */
   const handleToggleCompletedTodo = () => {
-    setshowCompletedTodo(!showCompletedTodo);
+    try {
+      setshowCompletedTodo(!showCompletedTodo);
+    } catch (error) {
+      console.log(error);
+    }
   };
   /**
    * @name handleTodoDate
@@ -177,7 +211,11 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
    */
 
   const handleTodoDate = (date, todoId) => {
-    dispatch(setDueDate(todoId, list.id, date));
+    try {
+      dispatch(setDueDate(todoId, list.id, date));
+    } catch (error) {
+      console.log(error);
+    }
   };
   console.log(new Date());
 
@@ -272,72 +310,23 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
         <div className="todos-display-container">
           {inCompletedTodo?.map((value, key) => {
             return (
-              <div className="todo-display-container" key={key}>
-                <button className="add-todo-button">
-                  <img
-                    className="add-icon"
-                    src={CircleIcon}
-                    alt="circleicon"
-                    onClick={() => handleComplete(value.id)}
-                  />
-                </button>
-                <div
-                  className="todo-name"
-                  onClick={() => {
-                    handleDo(true);
-                    handlePass(value);
-                  }}
-                >
-                  {value?.task}
-                </div>
-                <button className="todo-display-container-duedate">
-                  <DatePicker
-                    selected={value?.dueDate}
-                    className="duedate-field"
-                    onChange={(date) => handleTodoDate(date, value.id)}
-                  />
-                </button>
-                <button className="add-todo-button">
-                  <img
-                    src={value.isImportant ? StarFilled : StarIcon}
-                    alt={"star"}
-                    className="add-icon"
-                    onClick={() => handleChangeImportant(value.id)}
-                  />
-                </button>
-              </div>
-            );
-          })}
-          {completedTodo?.length ? (
-            <div className="add-todo-container completed-container">
-              <button className="add-todo-button">
-                <img
-                  src={(showCompletedTodo && DownArrow) || UpArrow}
-                  alt="add"
-                  className="add-icon"
-                  onClick={handleToggleCompletedTodo}
-                />
-              </button>
-              <p className="completed">Completed</p>
-              <div className="todos-count">{completedTodo?.length}</div>
-            </div>
-          ) : (
-            <></>
-          )}
-          {completedTodo?.map((value, key) => {
-            return (
-              showCompletedTodo && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 <div className="todo-display-container" key={key}>
                   <button className="add-todo-button">
                     <img
                       className="add-icon"
-                      src={CheckMarkIcon}
-                      alt="checkmarkicon"
-                      onClick={() => handleComplete(value?.id)}
+                      src={CircleIcon}
+                      alt="circleicon"
+                      onClick={() => handleComplete(value.id)}
                     />
                   </button>
                   <div
-                    className="todo-name completed-todo"
+                    className="todo-name"
                     onClick={() => {
                       handleDo(true);
                       handlePass(value);
@@ -361,6 +350,69 @@ const TodoBody = ({ handleChange, toggle, handleDo, change, list, data }) => {
                     />
                   </button>
                 </div>
+              </motion.div>
+            );
+          })}
+          {completedTodo?.length ? (
+            <div className="add-todo-container completed-container">
+              <button className="add-todo-button">
+                <img
+                  src={(showCompletedTodo && DownArrow) || UpArrow}
+                  alt="add"
+                  className="add-icon"
+                  onClick={handleToggleCompletedTodo}
+                />
+              </button>
+              <p className="completed">Completed</p>
+              <div className="todos-count">{completedTodo?.length}</div>
+            </div>
+          ) : (
+            <></>
+          )}
+          {completedTodo?.map((value, key) => {
+            return (
+              showCompletedTodo && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="todo-display-container" key={key}>
+                    <button className="add-todo-button">
+                      <img
+                        className="add-icon"
+                        src={CheckMarkIcon}
+                        alt="checkmarkicon"
+                        onClick={() => handleComplete(value?.id)}
+                      />
+                    </button>
+                    <div
+                      className="todo-name completed-todo"
+                      onClick={() => {
+                        handleDo(true);
+                        handlePass(value);
+                      }}
+                    >
+                      {value?.task}
+                    </div>
+                    <button className="todo-display-container-duedate">
+                      <DatePicker
+                        selected={value?.dueDate}
+                        className="duedate-field"
+                        onChange={(date) => handleTodoDate(date, value.id)}
+                      />
+                    </button>
+                    <button className="add-todo-button">
+                      <img
+                        src={value.isImportant ? StarFilled : StarIcon}
+                        alt={"star"}
+                        className="add-icon"
+                        onClick={() => handleChangeImportant(value.id)}
+                      />
+                    </button>
+                  </div>
+                </motion.div>
               )
             );
           })}
